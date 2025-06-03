@@ -1,0 +1,2 @@
+Purpose: Contains your HTTP handler functions. These are responsible for receiving HTTP requests, decoding them, calling the appropriate service methods, and sending back HTTP responses. They should be thin and focus on HTTP concerns, not business logic.
+Examples: product.go (e.g., GetProductByID, CreateProduct), user.go (e.g., RegisterUser, LoginUser).

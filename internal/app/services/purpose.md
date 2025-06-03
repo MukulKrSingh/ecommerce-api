@@ -1,0 +1,3 @@
+Purpose: Contains the business logic and orchestrates interactions between handlers, repositories, and external services. Services encapsulate the "what" of your application's operations.
+Examples: product.go (e.g., GetProductDetails, AddProductToCart), user.go (e.g., AuthenticateUser, UpdateUserProfile).
+Why: Decouples business logic from HTTP concerns. Services are easily testable without needing to mock HTTP requests.

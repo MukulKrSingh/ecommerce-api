@@ -1,0 +1,2 @@
+# Purpose: Defines multi-container Docker applications (e.g., your API, PostgreSQL database, Redis cache) for local development.
+# Why: Simplifies local environment setup.

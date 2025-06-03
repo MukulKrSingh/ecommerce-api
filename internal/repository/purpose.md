@@ -1,0 +1,3 @@
+Purpose: Defines interfaces and implementations for data persistence operations. Repositories abstract the data storage layer from the business logic. They answer the "how" of data access.
+Examples: product.go (e.g., GetProductByID, SaveProduct), user.go (e.g., GetUserByEmail, CreateUser).
+Why: Services interact with repositories via interfaces, making it easy to swap out different database implementations or mock them for testing.
