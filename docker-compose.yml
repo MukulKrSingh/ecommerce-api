@@ -1,2 +1,19 @@
 # Purpose: Defines multi-container Docker applications (e.g., your API, PostgreSQL database, Redis cache) for local development.
 # Why: Simplifies local environment setup.
+
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=e-commerce
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

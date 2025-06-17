@@ -1,0 +1,53 @@
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build files
+bin/
+dist/
+build/
+vendor/
+
+# Go specific
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# Logs
+logs/
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# MongoDB specific
+data/db/
+mongod.lock
+
+# Coverage reports
+coverage.txt
+coverage.html
+*.cover
+
+# Air hot reload
+.air.toml
+tmp/
