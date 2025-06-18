@@ -2,9 +2,12 @@ package handlers
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/ecommerce-api/internal/api/rest"
 	"github.com/ecommerce-api/internal/api/service"
+	"github.com/ecommerce-api/internal/model"
+	"github.com/ecommerce-api/internal/repository"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,15 +18,14 @@ type UserHandler struct {
 func InitUserRoutes(rh *rest.RestHandler) {
 
 	app := rh.App
-	svc := service.UserService{}
 	handler := UserHandler{
-		svc: svc,
+		svc: *service.NewUserService(repository.NewUserRepository(rh.DB)),
 	}
 
 	pubRoutes := app.Group("/")
 
 	//Public routes for user registration and login
-	pubRoutes.POST("/users", handler.Register)
+	pubRoutes.POST("/register", handler.Register)
 	pubRoutes.POST("/login", handler.Login)
 
 	//Private routes for user profile management
@@ -49,11 +51,34 @@ func InitUserRoutes(rh *rest.RestHandler) {
 
 func (uh *UserHandler) Register(ctx *gin.Context) {
 	// Handler logic for user registration
+	//todo: call service to register user
 	log.Println("User registration handler called")
+	var user model.User
+	if err := ctx.ShouldBindJSON(&user); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	user, err := uh.svc.RegisterUser(&user)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"message": "User registered successfully", "user": user})
 }
 func (uh *UserHandler) Login(ctx *gin.Context) {
 	// Handler logic for user login
 	log.Println("User login handler called")
+	var user model.User
+	if err := ctx.ShouldBindJSON(&user); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	user, err := uh.svc.Login(user.Email, user.Password)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{"message": "User logged in successfully", "user": user})
 }
 func (uh *UserHandler) GetVerificationCode(ctx *gin.Context) {
 	// Handler logic for getting verification code
