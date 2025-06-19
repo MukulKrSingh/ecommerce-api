@@ -4,7 +4,7 @@ import "time"
 
 // Product represents a product in the e-commerce system.
 type Product struct {
-	ID          string  `json:"id" gorm:"PrimaryKey; not null; unique; index"`
+	ID          uint    `json:"id" gorm:"PrimaryKey; not null; unique; index"`
 	Name        string  `json:"name"`
 	Description string  `json:"description"`
 	Price       float64 `json:"price"`

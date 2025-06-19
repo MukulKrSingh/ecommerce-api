@@ -27,6 +27,7 @@ func (r *userRepository) CreateUser(user *model.User) (model.User, error) {
 	if err != nil {
 		return model.User{}, err
 	}
+
 	return *user, nil
 }
 func (r *userRepository) Login(email string, password string) (model.User, error) {
