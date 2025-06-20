@@ -19,7 +19,10 @@ func InitUserRoutes(rh *rest.RestHandler) {
 
 	app := rh.App
 	handler := UserHandler{
-		svc: *service.NewUserService(repository.NewUserRepository(rh.DB)),
+		svc: service.UserService{
+			UserRepo: repository.NewUserRepository(rh.DB),
+			Auth:     rh.Auth,
+		},
 	}
 
 	pubRoutes := app.Group("/")
@@ -51,34 +54,37 @@ func InitUserRoutes(rh *rest.RestHandler) {
 
 func (uh *UserHandler) Register(ctx *gin.Context) {
 	// Handler logic for user registration
-	//todo: call service to register user
+
 	log.Println("User registration handler called")
 	var user model.User
+	var token string
 	if err := ctx.ShouldBindJSON(&user); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	user, err := uh.svc.RegisterUser(&user)
+	token, user, err := uh.svc.RegisterUser(&user)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "User registered successfully", "user": user})
+	ctx.JSON(http.StatusOK, gin.H{"message": "User registered successfully", "token": token, "user": user})
 }
 func (uh *UserHandler) Login(ctx *gin.Context) {
 	// Handler logic for user login
 	log.Println("User login handler called")
-	var user model.User
+	var token string
+	user := model.User{}
+	// Bind the JSON request body to the user model
 	if err := ctx.ShouldBindJSON(&user); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	user, err := uh.svc.Login(user.Email, user.Password)
+	token, err := uh.svc.Login(user.Email, user.Password)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"message": "User logged in successfully", "user": user})
+	ctx.JSON(http.StatusOK, gin.H{"message": "User logged in successfully", "user": token})
 }
 func (uh *UserHandler) GetVerificationCode(ctx *gin.Context) {
 	// Handler logic for getting verification code

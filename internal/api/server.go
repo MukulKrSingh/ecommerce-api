@@ -9,6 +9,7 @@ import (
 	"github.com/ecommerce-api/config"
 	"github.com/ecommerce-api/internal/api/rest"
 	"github.com/ecommerce-api/internal/api/rest/handlers"
+	"github.com/ecommerce-api/internal/helpers"
 	"github.com/ecommerce-api/internal/model"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
@@ -50,9 +51,12 @@ func SetupServer(cfg config.AppConfig) {
 		})
 	})
 
+	auth := helpers.NewAuth(cfg.AppSecret)
+
 	restHandler := &rest.RestHandler{
-		App: app,
-		DB:  db, // Uncomment and set your database connection if needed
+		App:  app,
+		DB:   db, // Uncomment and set your database connection if needed
+		Auth: auth,
 	}
 	// Initialize the REST API routes
 	setUpRoutes(restHandler)
