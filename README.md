@@ -16,7 +16,16 @@ This project provides a robust, model-driven architecture for building e-commerc
   
   <p><strong>Database Solution:</strong></p>
   <p>
-    <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
+    <img src="https://img.shields.io/badge/MongoDB-4EA94B?sty   ## 🗺️ Roadmap
+   
+   - [x] Initial project setup
+   - [x] Core data models implementation
+   - [x] REST API endpoints
+   - [ ] GraphQL schema and resolvers
+   - [x] Authentication system
+   - [ ] Payment processing
+   - [ ] Search functionality
+   - [ ] Analytics integrationle=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
     <br/>
     <em>Currently using MongoDB with flexibility to migrate to other systems as needed</em>
   </p>
