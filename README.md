@@ -386,5 +386,5 @@ Full API documentation is available at `/api/v1/docs` when the server is running
 
 If you have any questions or need help with this project:
 
-- Create an [Issue](https://github.com/yourusername/ecommerce-api/issues)
-- Contact the maintainer at [your.email@example.com](mailto:your.email@example.com)
+- Create an [Issue](https://github.com/MukulKrSingh/ecommerce-api/issues)
+- Contact the maintainer at [singhmukul96@gmail.com](mailto:singhmukul96@gmail.com)
