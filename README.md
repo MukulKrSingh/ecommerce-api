@@ -355,30 +355,7 @@ Full API documentation is available at `/api/v1/docs` when the server is running
 
   <p><strong>Example API Response</strong></p>
   
-  ```json
-  {
-    "status": "success",
-    "data": {
-      "products": [
-        {
-          "id": "1",
-          "name": "Ergonomic Keyboard",
-          "description": "Comfortable typing experience with ergonomic design",
-          "price": 89.99,
-          "category": "Electronics",
-          "inStock": true
-        },
-        {
-          "id": "2",
-          "name": "Wireless Mouse",
-          "description": "Precision wireless mouse with long battery life",
-          "price": 49.99,
-          "category": "Electronics",
-          "inStock": true
-        }
-      ]
-    }
-  }
+  =======================IN PROGRESS======================================
   ```
 </div>
 
