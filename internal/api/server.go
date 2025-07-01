@@ -61,7 +61,7 @@ func SetupServer(cfg config.AppConfig) {
 	// Initialize the REST API routes
 	setUpRoutes(restHandler)
 
-	app.Run(cfg.ServerPort)
+	app.Run(":" + cfg.ServerPort)
 
 }
 

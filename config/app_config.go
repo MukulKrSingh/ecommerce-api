@@ -17,7 +17,7 @@ type AppConfig struct {
 
 func SetupEnv() (cfg AppConfig, err error) {
 	godotenv.Load()
-	err = godotenv.Load(filepath.Join("/Users/mukulkumarsingh/workspace/go_space/ecommerce-api/", ".env"))
+	err = godotenv.Load(filepath.Join("/Users/mukul/workspace/go_space/ecommerce-api/", ".env"))
 	if err != nil {
 		return AppConfig{}, fmt.Errorf("error loading .env file: %w", err)
 	}
